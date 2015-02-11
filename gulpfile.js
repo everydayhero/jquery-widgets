@@ -1,8 +1,8 @@
-var gulp         = require('gulp');
-var jshint       = require('gulp-jshint');
-var uglify       = require('gulp-uglify');
-var rename       = require('gulp-rename');
-var del          = require('del');
+var gulp   = require('gulp');
+var jshint = require('gulp-jshint');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
+var del    = require('del');
 
 // DEFAULT
 // ======================================================
