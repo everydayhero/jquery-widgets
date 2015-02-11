@@ -14,7 +14,7 @@ A simple jQuery plugin that fetches total funds raised (for pages, campaigns or 
   <body>
     <div id="amount"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://d2h3g7rbnequ8a.cloudfront.net/edh_totals/edh_totals-0.0.2.min.js"></script>
+    <script src="https://d2h3g7rbnequ8a.cloudfront.net/edh_totals/jquery-totals-0.0.1.min.js"></script>
     <script>
       $(function() {
         $('#amount').getEDHTotals({
