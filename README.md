@@ -1,6 +1,6 @@
 # jquery-totals
 
-A simple jQuery plugin that fetches total funds raised (for a page, campaign or charity) from the [everydayhero API](http://developer.everydayhero.com/totals/) and displays the result in a targetted HTML element.
+A simple jQuery plugin that fetches total funds raised (for pages, campaigns or charities) from the [everydayhero API](http://developer.everydayhero.com/totals/) and displays the result in a targetted HTML element.
 
 
 ### Simple Usage
@@ -17,7 +17,10 @@ A simple jQuery plugin that fetches total funds raised (for a page, campaign or 
     <script src="https://d2h3g7rbnequ8a.cloudfront.net/edh_totals/edh_totals-0.0.2.min.js"></script>
     <script>
       $(function() {
-        $('#amount').getEDHTotals({ ids: ['au-0', 'us-1'] });
+        $('#amount').getEDHTotals({
+          type: 'campaign',
+          ids: ['us-0']
+        });
       });
     </script>
   </body>
@@ -44,7 +47,7 @@ A callback can be used to retreive an object that contains the currency symbol, 
       type: 'campaign',
       ids: ['us-0'],
       callback: function() {
-        console.log(this); // Logs the returned object
+        console.log(this);
       }
     });
   });
@@ -53,4 +56,5 @@ A callback can be used to retreive an object that contains the currency symbol, 
 
 **Latest CDN Version:**
 
-Minified: https://d2h3g7rbnequ8a.cloudfront.net/edh_totals/edh_totals-0.0.2.min.js
+- Source: http://d2h3g7rbnequ8a.cloudfront.net/edh_totals/jquery-totals-0.0.1.js
+- Minified: http://d2h3g7rbnequ8a.cloudfront.net/edh_totals/jquery-totals-0.0.1.min.js
