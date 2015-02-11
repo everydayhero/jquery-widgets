@@ -2,8 +2,9 @@
   $.fn.getEDHTotals = function(options) {
 
     // Format money including commas for amounts over 1,000.
+    // TODO: Replace this nonsense.
     Number.prototype.formatMoney = function(c, d, t){
-      var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "," : d, t = t == undefined ? "." : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+      var n = this; c = isNaN(c = Math.abs(c)) ? 2 : c, d = d === undefined ? "," : d, t = t === undefined ? "." : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
       return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
     };
 
@@ -19,7 +20,7 @@
     var jxhr           = [];
     var totalCents     = 0;
     var currencySymbol = '';
-    var endpointUrl    = 'https://everydayhero.com/api/v2/search/totals.jsonp?'
+    var endpointUrl    = 'https://everydayhero.com/api/v2/search/totals.jsonp?';
     var url            = '';
 
     if (options.type === 'campaign') {
@@ -54,5 +55,5 @@
       $(element).text(totalFormatted);
       options.callback.call(returnObj);
     });
-  }
+  };
 }(jQuery));
