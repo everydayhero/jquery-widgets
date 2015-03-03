@@ -25,8 +25,6 @@
     var endpointUrl    = 'https://everydayhero.com/api/v2/search/totals.jsonp?';
     var url            = '';
 
-    console.log(settings);
-
     if (settings.type === 'campaign') {
       url = endpointUrl + 'campaign_id=';
     } else if (settings.type === 'charity') {
