@@ -1,4 +1,4 @@
-(function ($) {
+;(function ($, window, undefined) {
   $.fn.getEDHTotals = function(options) {
 
     // Format money including commas for amounts over 1,000.
@@ -69,4 +69,4 @@
       }
     });
   };
-}(jQuery));
+}(jQuery, window));
