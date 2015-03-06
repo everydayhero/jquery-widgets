@@ -1,9 +1,18 @@
-# jquery-totals
+# jquery-widgets
+
+Simple lightweight jQuery plugins intended to speed up development of everydayhero giving hubs.
+
+## getEDHTotals
 
 A simple jQuery plugin that fetches total funds raised (for pages, campaigns or charities) from the [everydayhero API](http://developer.everydayhero.com/totals/) and displays the result in a targetted HTML element.
 
+#### Latest CDN Version
 
-### Simple Usage
+- Source: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.3.js
+- Minified: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.3.min.js
+
+
+#### Simple Usage
 
 ```html
 <!DOCTYPE html>
@@ -14,7 +23,7 @@ A simple jQuery plugin that fetches total funds raised (for pages, campaigns or 
   <body>
     <div id="amount"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://d2h3g7rbnequ8a.cloudfront.net/edh_totals/jquery-totals-0.0.1.min.js"></script>
+    <script src="https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.3.min.js"></script>
     <script>
       $(function() {
         $('#amount').getEDHTotals({
@@ -27,18 +36,18 @@ A simple jQuery plugin that fetches total funds raised (for pages, campaigns or 
 </html>
 ```
 
-### Options
+#### Options
 
 | Option    | Type      | Default Value      | Description        |
 | --------- | --------- | ------------------ | ------------------ |
 | `type`    | string    | `'campaign'`       | Can be `'campaign'`, `'charity'` or `'page'`. |
 | `ids`     | array     | `['au-0']`         | Insert ids (of the same type) as an array. Totals for each provided id will be summed together. |
-| `callback` | function | none               | Callback to run after the total has been retrieved. `this` contains an object including the currency symbol, a total in cents and the formatted total to do as you want with. |
+| `render`  | function  | null               | Define a callback function to replace the default render function with your own. For example render the currency in a different format. `this` contains a reference to the selected element. A second argument can be passed to retrieve an object with currency both formatted and unformatted. |
+| `onComplete` | function | null               | Define a callback function to run after the total has been retrieved and rendered. `this` contains a reference to the selected element. |
 
+#### Using a render callback to define your own format
 
-### Using a callback
-
-A callback can be used to retreive an object that contains the currency symbol, a total in cents and the formatted total. This can be useful if you need to display the returned amount in a different format or tamper with the returned total in some way after displaying it.
+The `render` callback can be used to retreive an object that contains the currency symbol, a total in cents and the formatted total. This can be useful if you need to display the returned amount in a different format or tamper with the returned total in some way before displaying it.
 
 ```js
 <script>
@@ -46,15 +55,84 @@ A callback can be used to retreive an object that contains the currency symbol, 
     $('#amount').getEDHTotals({
       type: 'campaign',
       ids: ['us-0'],
-      callback: function() {
-        console.log(this);
+      render: function(totalObj) {
+        var newTotal = '$' + (totalObj.totalCents / 100).toFixed(2);
+        this.append(newTotal);
       }
     });
   });
 </script>
 ```
 
-**Latest CDN Version:**
 
-- Source: http://d2h3g7rbnequ8a.cloudfront.net/edh_totals/jquery-totals-0.0.1.js
-- Minified: http://d2h3g7rbnequ8a.cloudfront.net/edh_totals/jquery-totals-0.0.1.min.js
+## getEDHLeaderboard
+
+A simple jQuery plugin that fetches a campaign leaderboard from the [everydayhero API](http://developer.everydayhero.com/leaderboards/) and displays the result in a targetted HTML element. It can also be used to generate a leaderboard based on multiple campaigns, e.g. Top individual fundraisers from campaign _X_, _Y_ and _Z_.
+
+#### Latest CDN Version
+
+- Source: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-leaderboard-0.0.1.js
+- Minified: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-leaderboard-0.0.1.min.js
+
+
+#### Simple Usage
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <div id="leaderboard"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-leaderboard-0.0.1.min.js"></script>
+    <script>
+      $(function() {
+        $('#leaderboard').getEDHLeaderboard({
+          type: 'individual',
+          ids: ['us-0']
+        });
+      });
+    </script>
+  </body>
+</html>
+```
+
+#### Options
+
+| Option    | Type      | Default Value      | Description        |
+| --------- | --------- | ------------------ | ------------------ |
+| `type`    | string    | `'individual'`     | Can be `'individual'`, `'team'` or `'all'`. |
+| `ids`     | array     | `['au-0']`         | Insert ids (of the same type) as an array. Totals for each provided id will be summed together. |
+| `render`  | function  | null               | Define a callback function to replace the default render function with your own. |
+| `onComplete` | function | null             | Define a callback function to run after the leaderboard has been retrieved and rendered. |
+
+#### Using a render callback to define custom leaderboard HTML
+
+The `render` callback can be used to define your own custom HTML to format the leaderboard as you like. See the below example:
+
+```js
+<script>
+  $(function() {
+    $('#leaderboard').getEDHTotals({
+      type: 'campaign',
+      ids: ['us-0'],
+      render: function(leaderboardItems) {
+        var element = this;
+        var html    = "";
+
+        $(leaderboardItems).each(function(i, item) {
+          html += '<div>' +
+                    '<img src="' + item.img + '" />' +
+                    '<div>' + item.name + '</div>' +
+                    '<div>' + item.amount + '</div>' +
+                  '</div>';
+        });
+
+        this.append(html);
+      }
+    });
+  });
+</script>
+```
