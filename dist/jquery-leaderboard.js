@@ -45,14 +45,14 @@
       var html = "";
 
       $(leaderboard).each(function(i, item) {
-        html += '<a href="' + item.url + '" title="' + item.name + '">' +
-                  '<div class="image">' +
+        html += '<a class="edhLeaderboard__item" href="' + item.url + '" title="' + item.name + '">' +
+                  '<div class="edhLeaderboard__image">' +
                     '<img src="' + item.img + '" />' +
                   '</div>' +
-                  '<div class="name" title="' + item.name + '">' +
-                    '<span>' + item.name + '</span>' +
+                  '<div class="edhLeaderboard__name" title="' + item.name + '">' +
+                    item.name +
                   '</div>' +
-                  '<div class="amount">' +
+                  '<div class="edhLeaderboard__amount">' +
                     item.amount +
                   '</div>' +
                 '</a>';
