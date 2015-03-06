@@ -12,18 +12,22 @@
     $.fn.getEDHTotals.defaults = {
       type: 'campaign',
       ids: ['au-0'],
-      callback: function() {}
+      onComplete: null,
+      render: null
     };
 
     var settings = $.extend({}, $.fn.getEDHTotals.defaults, options);
-
-    var element        = this.selector;
+    var element        = $(this.selector);
     var campaigns      = [];
     var jxhr           = [];
     var totalCents     = 0;
     var currencySymbol = '';
     var endpointUrl    = 'https://everydayhero.com/api/v2/search/totals.jsonp?';
     var url            = '';
+
+    var renderTotal = function(totalFormatted) {
+      $(element).text(totalFormatted);
+    };
 
     if (settings.type === 'campaign') {
       url = endpointUrl + 'campaign_id=';
@@ -54,8 +58,15 @@
         totalCents: totalCents
       };
 
-      $(element).text(totalFormatted);
-      settings.callback.call(returnObj);
+      if ($.isFunction(settings.render)) {
+        settings.render.call(element, returnObj);
+      } else {
+        renderTotal(totalFormatted);
+      }
+
+      if ($.isFunction(settings.onComplete)) {
+        settings.onComplete.call(element);
+      }
     });
   };
 }(jQuery));
