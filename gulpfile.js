@@ -13,7 +13,7 @@ gulp.task('default', ['clean'], function() {
 // SCRIPTS
 // ======================================================
 gulp.task('scripts', function() {
-  return gulp.src('src/jquery-totals.js')
+  return gulp.src('src/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(gulp.dest('dist/'))
