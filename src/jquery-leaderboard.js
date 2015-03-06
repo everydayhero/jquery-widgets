@@ -42,21 +42,23 @@
     };
 
     var renderLeaderboard = function(leaderboard) {
-      $(leaderboard).each(function(i, item) {
-        var html = '<a href="' + item.url + '" title="' + item.name + '">' +
-                      '<div class="image">' +
-                        '<img src="' + item.img + '" />' +
-                      '</div>' +
-                      '<div class="name" title="' + item.name + '">' +
-                        '<span>' + item.name + '</span>' +
-                      '</div>' +
-                      '<div class="amount">' +
-                        item.amount +
-                      '</div>' +
-                    '</a>';
+      var html = "";
 
-        $(element).append(html);
+      $(leaderboard).each(function(i, item) {
+        html += '<a href="' + item.url + '" title="' + item.name + '">' +
+                  '<div class="image">' +
+                    '<img src="' + item.img + '" />' +
+                  '</div>' +
+                  '<div class="name" title="' + item.name + '">' +
+                    '<span>' + item.name + '</span>' +
+                  '</div>' +
+                  '<div class="amount">' +
+                    item.amount +
+                  '</div>' +
+                '</a>';
       });
+
+      $(element).append(html);
     };
 
     var createLeaderboard = function(pageData) {
