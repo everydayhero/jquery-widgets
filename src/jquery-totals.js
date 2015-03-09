@@ -18,7 +18,7 @@
 
     var settings = $.extend({}, $.fn.getEDHTotals.defaults, options);
     var element        = $(this.selector);
-    var campaigns      = [];
+    var results        = [];
     var jxhr           = [];
     var totalCents     = 0;
     var currencySymbol = '';
@@ -40,15 +40,15 @@
     $.each(settings.ids, function(i, id) {
       jxhr.push(
         $.getJSON(url + id + '&callback=?', function(data) {
-          campaigns.push(data.total_amount_cents.sum);
+          results.push(data.total_amount_cents.sum);
         })
       );
     });
 
     $.when.apply($, jxhr).done(function(){
-      $.each(campaigns, function(i, campaign){
+      $.each(results, function(i, result){
         currencySymbol = '$';
-        totalCents += campaign;
+        totalCents += result;
       });
 
       var totalFormatted = currencySymbol + (totalCents / 100).formatMoney(2,'.',',');
