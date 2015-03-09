@@ -8,8 +8,8 @@ A simple jQuery plugin that fetches total funds raised (for pages, campaigns or 
 
 #### Latest CDN Version
 
-- Source: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.3.js
-- Minified: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.3.min.js
+- Source: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.4.js
+- Minified: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.4.min.js
 
 
 #### Simple Usage
@@ -23,7 +23,7 @@ A simple jQuery plugin that fetches total funds raised (for pages, campaigns or 
   <body>
     <div id="amount"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.3.min.js"></script>
+    <script src="https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.4.min.js"></script>
     <script>
       $(function() {
         $('#amount').getEDHTotals({
@@ -71,8 +71,8 @@ A simple jQuery plugin that fetches a campaign leaderboard from the [everydayher
 
 #### Latest CDN Version
 
-- Source: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-leaderboard-0.0.1.js
-- Minified: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-leaderboard-0.0.1.min.js
+- Source: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-leaderboard-0.0.2.js
+- Minified: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-leaderboard-0.0.2.min.js
 
 
 #### Simple Usage
@@ -86,7 +86,7 @@ A simple jQuery plugin that fetches a campaign leaderboard from the [everydayher
   <body>
     <div id="leaderboard"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-leaderboard-0.0.1.min.js"></script>
+    <script src="https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-leaderboard-0.0.2.min.js"></script>
     <script>
       $(function() {
         $('#leaderboard').getEDHLeaderboard({
