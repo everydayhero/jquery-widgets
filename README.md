@@ -104,7 +104,8 @@ A simple jQuery plugin that fetches a campaign leaderboard from the [everydayher
 | Option    | Type      | Default Value      | Description        |
 | --------- | --------- | ------------------ | ------------------ |
 | `type`    | string    | `'individual'`     | Can be `'individual'`, `'team'` or `'all'`. |
-| `ids`     | array     | `['au-0']`         | Insert ids (of the same type) as an array. Totals for each provided id will be summed together. |
+| `ids`     | array     | `['au-0']`         | Insert ids (of the same type) as an array. Totals for each provided id will be summed together.|
+| `limit`   | number    | `5`                | Define the number of results to show (and fetch from the API). |
 | `render`  | function  | null               | Define a callback function to replace the default render function with your own. |
 | `onComplete` | function | null             | Define a callback function to run after the leaderboard has been retrieved and rendered. |
 

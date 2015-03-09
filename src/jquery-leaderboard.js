@@ -11,6 +11,7 @@
     $.fn.getEDHLeaderboard.defaults = {
       type: 'individual',
       ids: ['au-0'],
+      limit: 5,
       onComplete: null,
       render: null
     };
@@ -20,13 +21,13 @@
     var pagesEndpoint = 'https://everydayhero.com/api/v2/pages.jsonp?ids=';
 
     var leaderboardEndpoints = $.map(settings.ids, function(campaignId, i) {
-      return "https://everydayhero.com/api/v2/campaigns/" + campaignId + "/leaderboard.json?type=" + settings.type;
+      return "https://everydayhero.com/api/v2/campaigns/" + campaignId + "/leaderboard.json?type=" + settings.type + '&limit=' + settings.limit;
     });
 
     var sortPages = function(pages) {
       return pages.sort(function(a, b) {
         return b.amount.cents - a.amount.cents;
-      }).slice(0,5);
+      }).slice(0, settings.limit);
     };
 
     var processPages = function(sortedPages) {
