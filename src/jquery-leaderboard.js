@@ -21,7 +21,7 @@
     var pagesEndpoint = 'https://everydayhero.com/api/v2/pages.jsonp?ids=';
 
     var leaderboardEndpoints = $.map(settings.ids, function(campaignId, i) {
-      return "https://everydayhero.com/api/v2/campaigns/" + campaignId + "/leaderboard.json?type=" + settings.type + '&limit=' + settings.limit;
+      return "https://everydayhero.com/api/v2/campaigns/" + campaignId + "/leaderboard.jsonp?type=" + settings.type + '&limit=' + settings.limit + "&callback=?";
     });
 
     var sortPages = function(pages) {
@@ -86,7 +86,7 @@
     var fetchPageInfo = function(pageIds) {
       return $.ajax({
         url: pagesEndpoint + pageIds,
-        dataType: 'jsonp'
+        dataType: "jsonp"
       });
     };
 
