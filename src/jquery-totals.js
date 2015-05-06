@@ -1,6 +1,5 @@
 ;(function ($, window, undefined) {
   $.fn.getEDHTotals = function(options) {
-
     // Format money including commas for amounts over 1,000.
     // TODO: Replace this nonsense.
     Number.prototype.formatMoney = function(c, d, t){
@@ -13,43 +12,26 @@
       type: 'campaign',
       ids: ['au-0'],
       onComplete: null,
-      render: null
+      render: null,
+      offset: 0
     };
 
-    var settings = $.extend({}, $.fn.getEDHTotals.defaults, options);
+    var settings       = $.extend({}, $.fn.getEDHTotals.defaults, options);
     var element        = $(this.selector);
-    var results        = [];
-    var jxhr           = [];
     var totalCents     = 0;
     var currencySymbol = '';
     var endpointUrl    = 'https://everydayhero.com/api/v2/search/totals.jsonp?';
-    var url            = '';
+    var typeString     = settings.type + "_id[]=";
+    var requestString  = settings.ids.length > 1 ? settings.ids.join("&" + typeString) : settings.ids;
+    var url            = endpointUrl + typeString + requestString;
 
     var renderTotal = function(totalFormatted) {
       $(element).text(totalFormatted);
     };
 
-    if (settings.type === 'campaign') {
-      url = endpointUrl + 'campaign_id=';
-    } else if (settings.type === 'charity') {
-      url = endpointUrl + 'charity_id=';
-    } else {
-      url = endpointUrl + 'page_id=';
-    }
-
-    $.each(settings.ids, function(i, id) {
-      jxhr.push(
-        $.getJSON(url + id + '&callback=?', function(data) {
-          results.push(data.total_amount_cents.sum);
-        })
-      );
-    });
-
-    $.when.apply($, jxhr).done(function(){
-      $.each(results, function(i, result){
-        currencySymbol = '$';
-        totalCents += result;
-      });
+    var request = $.getJSON(url + '&callback=?', function(data) {
+      currencySymbol = '$';
+      totalCents     = settings.offset + data.total_amount_cents.sum;
 
       var totalFormatted = currencySymbol + (totalCents / 100).formatMoney(2,'.',',');
       var returnObj = {

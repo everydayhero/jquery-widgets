@@ -8,8 +8,8 @@ A simple jQuery plugin that fetches total funds raised (for pages, campaigns or 
 
 #### Latest CDN Version
 
-- Source: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.4.js
-- Minified: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.4.min.js
+- Source: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.5.js
+- Minified: https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.5.min.js
 
 
 #### Simple Usage
@@ -23,7 +23,7 @@ A simple jQuery plugin that fetches total funds raised (for pages, campaigns or 
   <body>
     <div id="amount"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.4.min.js"></script>
+    <script src="https://d2h3g7rbnequ8a.cloudfront.net/jquery-widgets/jquery-totals-0.0.5.min.js"></script>
     <script>
       $(function() {
         $('#amount').getEDHTotals({
@@ -42,6 +42,7 @@ A simple jQuery plugin that fetches total funds raised (for pages, campaigns or 
 | --------- | --------- | ------------------ | ------------------ |
 | `type`    | string    | `'campaign'`       | Can be `'campaign'`, `'charity'` or `'page'`. |
 | `ids`     | array     | `['au-0']`         | Insert ids (of the same type) as an array. Totals for each provided id will be summed together. |
+| `offset`  | number    | `0`                | Add an offset in **cents** to be added to the returned total. |
 | `render`  | function  | null               | Define a callback function to replace the default render function with your own. For example render the currency in a different format. `this` contains a reference to the selected element. A second argument can be passed to retrieve an object with currency both formatted and unformatted. |
 | `onComplete` | function | null               | Define a callback function to run after the total has been retrieved and rendered. `this` contains a reference to the selected element. |
 
