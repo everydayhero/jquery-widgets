@@ -51,18 +51,14 @@ A simple jQuery plugin that fetches total funds raised (for pages, campaigns or 
 The `render` callback can be used to retreive an object that contains the currency symbol, a total in cents and the formatted total. This can be useful if you need to display the returned amount in a different format or tamper with the returned total in some way before displaying it.
 
 ```js
-<script>
-  $(function() {
-    $('#amount').getEDHTotals({
-      type: 'campaign',
-      ids: ['us-0'],
-      render: function(totalObj) {
-        var newTotal = '$' + (totalObj.totalCents / 100).toFixed(2);
-        this.append(newTotal);
-      }
-    });
-  });
-</script>
+$('#amount').getEDHTotals({
+  type: 'campaign',
+  ids: ['us-0'],
+  render: function(totalObj) {
+    var newTotal = '$' + (totalObj.totalCents / 100).toFixed(2);
+    this.append(newTotal);
+  }
+});
 ```
 
 
@@ -115,25 +111,21 @@ A simple jQuery plugin that fetches a campaign leaderboard from the [everydayher
 The `render` callback can be used to define your own custom HTML to format the leaderboard as you like. See the below example:
 
 ```js
-<script>
-  $(function() {
-    $('#leaderboard').getEDHTotals({
-      type: 'campaign',
-      ids: ['us-0'],
-      render: function(leaderboardItems) {
-        var html    = "";
+$('#leaderboard').getEDHLeaderboard({
+  type: 'individual',
+  ids: ['us-0'],
+  render: function(leaderboardItems) {
+    var html = "";
 
-        $(leaderboardItems).each(function(i, item) {
-          html += '<div>' +
-                    '<img src="' + item.img + '" />' +
-                    '<div>' + item.name + '</div>' +
-                    '<div>' + item.amount + '</div>' +
-                  '</div>';
-        });
-
-        this.append(html);
-      }
+    $(leaderboardItems).each(function(i, item) {
+      html += '<div>' +
+                '<img src="' + item.img + '" />' +
+                '<div>' + item.name + '</div>' +
+                '<div>' + item.amount + '</div>' +
+              '</div>';
     });
-  });
-</script>
+
+    this.append(html);
+  }
+});
 ```
