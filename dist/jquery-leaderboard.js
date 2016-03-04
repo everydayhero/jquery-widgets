@@ -9,9 +9,9 @@
     };
 
     $.fn.getEDHLeaderboard.defaults = {
-      type: 'individual',
       ids: ['au-0'],
       limit: 5,
+      groupValue: null,
       onComplete: null,
       render: null
     };
@@ -21,7 +21,7 @@
     var pagesEndpoint = 'https://everydayhero.com/api/v2/pages.jsonp?ids=';
 
     var leaderboardEndpoints = $.map(settings.ids, function(campaignId, i) {
-      return "https://everydayhero.com/api/v2/campaigns/" + campaignId + "/leaderboard.jsonp?type=" + settings.type + '&limit=' + settings.limit + "&callback=?";
+      return 'https://everydayhero.com/api/v2/search/pages_totals?campaign_id=' + campaignId + '&limit=' + settings.limit + '&group_value=' + settings.groupValue;
     });
 
     var sortPages = function(pages) {
@@ -98,9 +98,9 @@
 
       $.each(leaderboardEndpoints, function (i, url) {
         jxhr.push(
-          $.getJSON(url, {format: 'json'}, function (data) {
-            $.each(data.leaderboard.page_ids, function(ii, pageId) {
-              pageIds.push(pageId);
+          $.getJSON(url, function (data) {
+            $.each(data.results, function(ii, result) {
+              pageIds.push(result.page.id);
             });
           })
         );
